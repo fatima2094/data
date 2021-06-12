@@ -1,0 +1,77 @@
+{% extends "auth\base.html" %}
+
+{% block title %}
+	Sign Up
+{% endblock %}
+
+{% block content %}
+	
+	{% if messages %}
+
+	    {% for message in messages %}
+
+		<!--Panel-->
+		<div class="card border-danger mb-3">
+		    <div class="card-header text-danger">
+		        <p class="card-title">{{ message }}</p>
+		    </div>
+		</div>
+		<!--/.Panel-->
+	    
+	    {% endfor %}
+
+	{% endif %}
+
+<div class="login-wrap">
+
+
+	<div class="login-html">
+		<!-- Default form register -->
+		<form class="border mt-5 border-secondary text-center p-3" method="post">
+			{% csrf_token %}
+		    <p class="h4 mb-4 text-secondary text-center" style="color: rgb(210, 216, 216); " >Sign up</p>
+
+		    <!-- {{ form.as_p }} -->
+
+			{% for field in form %}
+		    <p>
+	        	{{ field.label_tag }}
+	        	{{ field }} 
+		        <!-- {% if field.help_text %}
+		          <small style="color: grey">{{ field.help_text }}</small>
+		        {% endif %} -->
+		        {% for error in field.errors %}
+		          <p style="color: red">{{ error }}</p>
+		        {% endfor %}
+		    </p>
+		    {% endfor %}
+
+		    <!-- Sign up button -->
+		    <button class="btn btn-secondary my-4 btn-block" type="submit">Sign up</button>
+
+		    <!-- Social register -->
+		   
+			<div class="foot-lnk">
+				<label for="tab-1"><a href="{% url 'login' %}">Already Member?</a></label>
+			</div>
+
+		   
+		</form>
+		<!-- Default form register -->
+	</div>
+
+
+
+</div>
+
+{% block script %}
+<script type="text/javascript">
+	function get_ip(json) {
+		$("#id_location").val(json.ip);
+	}
+</script>
+
+<script src="https://api.ipify.org?format=jsonp&callback=get_ip"></script>
+{% endblock %}
+
+{% endblock %}

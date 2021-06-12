@@ -1,0 +1,68 @@
+{% extends "auth\base2.html" %}
+
+{% block title %}
+	OTP code
+{% endblock %}
+
+{% block content %}
+	
+	
+
+<div class="login-wrap">
+	
+	
+	<div class="login-html">
+		{% if messages %}
+
+	{% for message in messages %}
+
+	<!--Panel-->
+	<div class="card border-danger mb-3">
+		<div class="card-header text-danger">
+			<p class="card-title">{{ message }}</p>
+		</div>
+	</div>
+	<!--/.Panel-->
+	
+	{% endfor %}
+
+{% endif %}
+
+		
+		<form class="border mt-5 border-secondary text-center p-3" method="post">
+			{% csrf_token %}
+		    <p class="h4 mb-4 text-secondary text-center" style="color: darkgrey !important;" >Enter OTP sende to your Eamil</p>
+
+		    <!-- {{ form.as_p }} -->
+
+			<p style="color: rgb(210, 216, 216);"> 
+				<p><input id="id_username" name="otp" placeholder="" type="text" class="form-control"></p>
+			</p>
+
+		    <!-- Sign up button -->
+		    <button class="btn btn-secondary my-4 btn-block" type="submit">OK</button>
+
+		    <!-- Social register -->
+		   
+			<hr>
+			
+
+		   
+		</form>
+	</div>
+
+	<div class="col-md-2"></div>
+
+</div>
+
+{% block script %}
+<script type="text/javascript">
+	function get_ip(json) {
+		$("#id_location").val(json.ip);
+	}
+</script>
+
+<script src="https://api.ipify.org?format=jsonp&callback=get_ip"></script>
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "file_upload/base.html" %}
+
+{% block content %}
+
+{% if files %}
+<table class="container" >
+        <h2> <a href="/file/upload2/" class="btn btn-primary  " target="_blank"> Upload !</a></h2>
+        
+    <thead>
+        <tr>
+			<th><h1>Download File</h1></th>
+			<th><h1>Filesize</h1></th>
+			<th><h1>Filename</h1></th>
+            <th><h1>Vew File</h1></th>
+            <th><h1>Delete File</h1></th>
+		</tr>
+        
+    </thead>
+
+    <tbody>
+    
+    {% for file in files %}
+    <tr>
+        <!-- Option 1 <td><a href="{{ file.file.url }}/">{{ file.file.url }}</a></td> -->
+        <td style="color: azure !important;"><a href="/file/download{{ file.file.url }}/">Download File</a></td>
+        <td style="color: azure;">{{ file.file.size | filesizeformat }}</td>
+        <td style="color: azure;">{{ file.name }}</td>
+        <td style="color: azure;">
+            <a href="{{file.file.url  }}" class="btn btn-primary btn-sm p" target="_blank">
+              View File
+            </a>
+        </td>
+        <td>
+            <form method="post" action="{% url 'file_upload:delete_book' file.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm p">Delete</button>
+            </form>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<h1><span class="blue">&lt;</span>Files List <span class="blue">&gt;</span> <span class="yellow"></pan></h1>
+dddd
+
+<h1><span class="blue">&lt;</span>No files uploaded yet. Please click <span class="blue">&gt;</span><a href="{% url 'file_upload:file_upload' %}">here</a> <span class="yellow">to upload files.</pan></h1>
+
+{% endif %}
+
+{% endblock %}

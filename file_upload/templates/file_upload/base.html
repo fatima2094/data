@@ -1,0 +1,35 @@
+{% load static %}
+
+<html lang="en">
+<head>
+<title>{% block title %}Upload and Download{% endblock %} </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="./style.css">
+
+<script  src="./script.js"></script>
+
+<link href="{% static 'style.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'script.js' %}"></script>
+
+
+</head>
+
+<body>
+ <!-- Page content of course! -->
+
+ {% block content %} {% endblock %}
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+
+
+{% block js %} {% endblock %}
+
+</body>
+</html>
+
+
